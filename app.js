@@ -25,10 +25,13 @@ app.use(cookieParser());
 
 //load routes
 const home = require('./routes/home/index');
+const admin = require('./routes/admin/index');
+
 var usersRouter = require('./routes/users');
 
 //use routes
 app.use('/', home);
+app.use('/admin', admin);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

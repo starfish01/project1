@@ -10,7 +10,25 @@ a {
   position:absolute;
   bottom:0;
   width:100%;
-  height:60px;   /* Height of the footer */
+  height:60px;  
   background:#6cf;
+}
+
+.body-home{
+  background-image: url("../images/Background-75.png");
+}
+
+body{
+  margin: 0px;
+}
+
+.jumbotron{
+  position: absolute;
+  bottom:100px;
+  right:50px;
+}
+
+.indexpagetitle{
+  padding-top: 50px;
 }
 
