@@ -4,8 +4,22 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const exphbs = require('express-handlebars');
+const mongodb = require('mongodb');
+const mongoose = require('mongoose');
+const {mongoDbUrl} = require('./bin/dbConnection');
+
 
 var app = express();
+
+
+mongoose.Promise = global.Promise;
+
+mongoose.connect(mongoDbUrl).then((db)=>{
+    console.log('mongo connected');
+}).catch(err =>{
+    console.log(err);
+});
+
 
 
 app.use(express.static(path.join(__dirname, 'public')));
