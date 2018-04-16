@@ -4,9 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const exphbs = require('express-handlebars');
-const mongodb = require('mongodb');
 const mongoose = require('mongoose');
 const {mongoDbUrl} = require('./bin/dbConnection');
+const passport = require('passport');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const methodOverride = require('method-override')
 
 
 var app = express();
@@ -35,6 +38,30 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+//body parser
+app.use(bodyParser.json());
+
+//method override
+app.use(methodOverride('_method'));
+
+
+app.use(session({
+  secret: 'patrickKey',
+  resave:true,
+  saveUninitialized:true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+//local var using middle ware
+
+app.use((req, res, next)=>{
+  res.locals.user = req.user || null;
+  next();
+});
 
 
 //load routes
