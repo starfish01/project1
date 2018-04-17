@@ -89,14 +89,15 @@ router.post('/register', (req, res)=>{
           firstName: req.body.firstName,
           lastName: req.body.lastName,
           email: req.body.email
-
-      
       });
+
+      req.flash('error', 'That email exists please login');
+
   }else{
 
       User.findOne({email: req.body.email}).then(user=>{
           if(user){
-              // req.flash('error_message', 'That email exists please login');
+               req.flash('error', 'That email exists please login');
               res.redirect('/');
           } else {
 
@@ -119,7 +120,7 @@ router.post('/register', (req, res)=>{
       
                       newUser.save().then(userSaved=>{
       
-                          // req.flash('error_message','You are registered now you can login');
+                        req.flash('error_message','You are registered now you can login');
       
                           res.render('home/');
                       }).catch(error=>{
@@ -136,6 +137,8 @@ router.post('/register', (req, res)=>{
       })
   }
 });
+
+
 
 
 

@@ -25,3 +25,8 @@ $(function() {
 	});
 
 });
+
+$(function(){
+	$('.messageError').delay(4000).fadeOut();
+
+});

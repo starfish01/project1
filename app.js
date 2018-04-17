@@ -9,7 +9,8 @@ const {mongoDbUrl} = require('./bin/dbConnection');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
+var flash = require('connect-flash');
 
 
 var app = express();
@@ -55,11 +56,15 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(flash());
+
 
 //local var using middle ware
-
 app.use((req, res, next)=>{
   res.locals.user = req.user || null;
+  res.locals.success_message = req.flash('success_message');
+  res.locals.error_message = req.flash('error_message');
+  res.locals.error = req.flash('error');
   next();
 });
 
