@@ -10,7 +10,7 @@ router.all('/*', userAuthenticated, (req, res, next) => {
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('admin/index',{messages:req.flash('info','Successfully Logged in, Enjoy your stay')});
+    res.render('admin/system-settings/index');
 });
 
 

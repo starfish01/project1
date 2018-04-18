@@ -72,13 +72,16 @@ app.use((req, res, next)=>{
 //load routes
 const home = require('./routes/home/index');
 const admin = require('./routes/admin/index');
-
-var usersRouter = require('./routes/users');
+const electricalconfiguration = require('./routes/admin/electrical-configuration');
+const installationTest = require('./routes/admin/installation-test');
+const systemSettings = require('./routes/admin/system-settings');
 
 //use routes
 app.use('/', home);
 app.use('/admin', admin);
-app.use('/users', usersRouter);
+app.use('/admin/electrical-configuration', electricalconfiguration);
+app.use('/admin/installation-test', installationTest);
+app.use('/admin/system-settings', systemSettings);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
